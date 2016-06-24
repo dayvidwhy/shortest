@@ -1,14 +1,13 @@
 <?php
 $link = $_SERVER['REQUEST_URI'];
 if ($link != '/' ) {
-	include('scripts/db_conf.php');
-	include('scripts/db_conn.php');
+	include('pub/scripts/db_conf.php');
+	include('pub/scripts/db_conn.php');
 	$db = new MySQLDatabase();
 	$db->connect(DB_USERNAME, DB_PASSWORD, DB_DATABASE);
 	$sql = "SELECT link_url FROM links WHERE (link_id = 2)";
 	$result = mysqli_query($db->link, $sql);
 	while($row = $result->fetch_assoc()) {
-		echo $row['link_url'];
 		$url = $row['link_url'];
 	}
 	header("Location: ".$url);
@@ -19,10 +18,10 @@ if ($link != '/' ) {
 <head>
 	<!--Looking at the source code I see, thanks for being so interested!-->
 	<meta charset="utf-8"> 
-	<meta name="description" content="I'm Feeling Stacky! When you can't be bothered searching stack overflow yourself, just yolo it.">
-	<meta name="keywords" content="im, feeling, stacky">
+	<meta name="description" content="it shortens urls">
+	<meta name="keywords" content="url, shortener">
 	<meta name="robots" content="index,follow">
-	<meta content = "I'm Feeling Stacky! When you can't be bothered searching stack overflow yourself, just yolo it." name="Description">
+	<meta content = "Shorten your url" name="Description">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>dwy shorty</title>
 	<link rel='stylesheet' href='pub/style/style.css'/>
