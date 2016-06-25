@@ -12,20 +12,17 @@ $(document).ready(function() {
 				data : {'link' : link},
 				dataType: 'json',
 				beforeSend: function() {
-					$("#short-link").text('trying');
+					$("input").val("working on it");
 				},
 				success: function(data) {
-					console.log(data);
-					console.log('it worked!');
-					$("#short-link").text(data);
+					$("input").val("dwy.io/"+data.link);
 				},
 				error: function(err) {
-					console.log(err);
-					$("#short-link").text('errr'+err);
+					$("input").val("didn't work :(");
 				}
 			});
 		} else {
-			$("#short-link").text('stop playing me');
+			$("input").val("Enter a url first.");
 		}
 	});
 
