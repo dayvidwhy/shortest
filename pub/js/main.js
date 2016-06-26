@@ -4,6 +4,13 @@ $(document).ready(function() {
 		event.preventDefault();
 		console.log("trying");
 		var link 		= $('input[name=searching]').val();
+		if (link.indexOf('dwy.io')>=0) {
+			$("input").val("Try entering a link");
+			return;
+		}
+		if (!(link.indexOf('http')>=0)) {
+			link = 'http://' + link;
+		}
 		var validLink = valid(link);
 		if (validLink) {
 			$.ajax({
@@ -15,7 +22,11 @@ $(document).ready(function() {
 					$("input").val("working on it");
 				},
 				success: function(data) {
-					$("input").val("dwy.io/"+data.link);
+					if (data.status === 1) {
+						$("input").val("dwy.io/"+data.link);
+					} else {
+						$("input").val("these scripts are not to be trifled with");
+					}
 				},
 				error: function(err) {
 					$("input").val("didn't work :(");

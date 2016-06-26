@@ -3,10 +3,10 @@
 <head>
 	<!--Looking at the source code I see, thanks for being so interested!-->
 	<meta charset="utf-8"> 
-	<meta name="description" content="it shortens urls">
+	<meta name="description" content="Convert your long url into a sub 10 character link.">
 	<meta name="keywords" content="url, shortener">
 	<meta name="robots" content="index,follow">
-	<meta content = "Shorten your url" name="Description">
+	<meta content = "Convert your long url into a sub 10 character link." name="Description">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>dwy shorty</title>
 	<link rel='stylesheet' href='pub/style/style.css'/>
@@ -22,7 +22,7 @@
 					Shorten a Link in a single click
 				</h2>
 			</div>
-			<div class="row hero-row">
+			<div class="row hero-row center">
 				<input type="text" name="searching" maxlength="124" placeholder="Link to shorten">
 				<div class="col-4 offset-4">
 					<button id="lets-go">Make it happen</button>
