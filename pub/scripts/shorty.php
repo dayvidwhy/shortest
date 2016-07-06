@@ -2,7 +2,8 @@
 //get the post variable sent to us
 $longLink = $_POST['link'];
 //make sure it contains http, otherwise add it
-if (!strrpos($longLink, 'http')) {
+$posi = strrpos($longLink, "http");
+if ($posi === false) {
 	$longLink = 'http://'.$longLink;
 }
 //are we linking to ourselves?

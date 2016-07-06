@@ -1,9 +1,7 @@
 /*deedubwhy.css v0.1*/
 html {
 	font-family: sans-serif;
-	background: url(../images/bg.jpg);
-	background-size: cover;
-	background-color: #FFF;
+	background-color: #2980b9;
 }
 
 /*reset body css*/
@@ -190,14 +188,17 @@ h1 {
 }
 
 h2 {
-	font-size: 2.5rem;
+	font-size: 3rem;
 	font-weight: 300;
-	color: #2c3e50;
+	color: #ecf0f1;
+	margin: 50px 0 10px 0;
 }
 
 h3 {
-	font-size: 2rem;
+	font-size: 1.4rem;
 	font-weight: 200;
+	margin: 10px 0;
+	color: #ecf0f1;
 }
 
 h4 {
@@ -222,7 +223,9 @@ h1,h2,h3,h4,h5,h6 {
 /*colours*/
 .blue {background-color: #2980b9;}
 .darker {background-color: #ecf0f1;}
-
+.blue-bg {
+	background-color: #2980b9;
+}
 /*some overrides*/
 .push-down {
 	margin-top: 20px;
@@ -255,6 +258,26 @@ h1,h2,h3,h4,h5,h6 {
 }
 a {
 	color: #FFF;
+}
+
+.copyright {
+	color: #FFF;
+	font-size: 12px;
+}
+
+.banner-text {
+	width: 100%;
+	font-size: 1.1em;
+	color: #FFF;
+	margin: 20px 0;
+}
+
+.banner-link {
+	color: #FFF;
+}
+
+.banner-link:hover {
+	color: #2ecc71;
 }
 
 /*a button links*/

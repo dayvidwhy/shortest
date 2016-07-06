@@ -8,9 +8,11 @@ $(document).ready(function() {
 			$("input").val("Try entering a link");
 			return;
 		}
-		if (!(link.indexOf('http')>=0)) {
+		if ((link.indexOf('http')!=0)) {
+			//should start with http
 			link = 'http://' + link;
 		}
+		console.log(link);
 		var validLink = valid(link);
 		if (validLink) {
 			$.ajax({
