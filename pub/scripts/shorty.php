@@ -1,35 +1,62 @@
 <?php
-//get the post variable sent to us
+session_start();
+// Get the post variable sent to us
 $longLink = $_POST['link'];
-//make sure it contains http, otherwise add it
+// Make sure it contains http, otherwise add it
 $posi = strrpos($longLink, "http");
 if ($posi === false) {
 	$longLink = 'http://'.$longLink;
 }
-//are we linking to ourselves?
+
+/*
+* Replace dwy.io with base domain of url shortener to stop
+* Prevent circular links.
+*/
 $pos = strrpos($longLink, "dwy.io");
 if ($pos === false) {
-	include('db_conf.php');
-	include('db_conn.php');
+
+	// Load Database scripts.
+	include('../db/db_conf.php');
+	include('../db/db_conn.php');
 	$db = new MySQLDatabase();
 	$db->connect(DB_USERNAME, DB_PASSWORD, DB_DATABASE);
-	//insert it into our database
+
+	// Insert it into our database.
 	$stmt = $db->link->prepare("INSERT INTO links (`link_url`) VALUES (?)");
 	$stmt->bind_param("s", $longLink);
 	$stmt->execute();
 	$newID = $stmt->insert_id;
 	$parsedID = toBase($newID);
-	//return json data to browser with link
-	$arr = array('link' => $parsedID, 'status' => 1);
-	echo json_encode($arr);
+
+	// Return json data to browser with link.
+	echo json_encode(array('link' => $parsedID, 'status' => 1));
 	$stmt->close();
 	$db->disconnect();
 } else {
-	//don't link to ourselves
-	echo json_encode(array('status' => 0));
+	// Don't link to ourselves
+	echo json_encode(array('link' => 'NULL', 'status' => 0));
 }
 
-//convert ID int in base10 to base62
+// TODO: Use class to store link.
+class ShortLink {
+	var $link;
+
+	function validate() {
+		return true;
+	}
+
+	function __constructor($link) {
+		$this->link = $link;
+	}
+
+	function __toString() {
+		return;
+	}
+}
+
+/*
+* Convert back to base 62.
+*/
 function toBase($num, $b=62) {
 	$base='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	$r = $num  % $b ;
@@ -42,4 +69,6 @@ function toBase($num, $b=62) {
 	}
 	return $res;
 }
+
+
 ?>
