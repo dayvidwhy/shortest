@@ -88,15 +88,18 @@ app.get("/:encoded", function (request, response) {
             $rowID: rowID
         },
         function (err, row) {
-            var that = this;
-            console.log(err);
-            console.log(row.url);
-            response.redirect(row.url);
+            if (row !== undefined) {
+                var that = this;
+                console.log(row);
+                response.redirect(row.url);
+            } else {
+                response.redirect("/");
+            }
         }
     );
 });
 
 // listen for requests
-var listener = app.listen(7000, function () {
+var listener = app.listen(process.env.PORT, function () {
     console.log('Your app is listening on port ' + listener.address().port);
 });

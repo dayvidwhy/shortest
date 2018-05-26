@@ -31,7 +31,7 @@ function formSubmitted (event) {
         },
         success: function(data) {
             if (data.status === 1) {
-                $("#input-box").val("dwy.io/"+data.link);
+                $("#input-box").val("https://shortest.glitch.me/"+data.link);
                 $("#submit-btn").val("Done!");
             } else {
                 $("#input-box").val("these scripts are not to be trifled with");
