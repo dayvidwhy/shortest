@@ -1,5 +1,4 @@
 # Shortest
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7184c3b60e04490c8133bdf8e2a33231)](https://www.codacy.com/app/dayvidwhy/shortest?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=dayvidwhy/shortest&amp;utm_campaign=Badge_Grade)  
 A URL shortener using node and sqlite3.
 
 ## Installation
