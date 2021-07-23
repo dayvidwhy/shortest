@@ -1,11 +1,12 @@
 # Shortest
-A URL shortener using node and sqlite3.
+Another URL shortener, using node and sqlite3.
 
 ## Installation
 1. `git clone https://github.com/dayvidwhy/shortest.git`
 2. `cd shortest`
 3. `npm install`
-4. `npm start`
+4. `npm run start`
+5. `npm run server` in another terminal.
 
 ## How does it work?
 It accepts urls in the given input field and then outputs in that same input field your successfully shortened URL. 
@@ -16,15 +17,15 @@ The database is pretty simple with just one table called `links` that looks like
 
 | rowID | url             |
 | ------|-----------------|
-| 1     | http://cool.com |
-| 2     | http://stop.com |
-| 3     | http://more.com |
+| 1     | url1            |
+| 2     | url2            |
+| 3     | url3            |
 
 Where we track url's with rowID's.
 
 If we request a url to be shortened we store it in the database and return the rowID of the entry encoded as base 62.
 
-So if we navigate to `http://shorturl.com/462a` a few things will happen:
+So if we navigate to `http://localhost:8080/api/462a` a few things will happen:
 
 * `462a` will be converted back to a base 10 number, a rowID.
 * The rowID is looked up in the database.
