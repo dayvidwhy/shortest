@@ -4,11 +4,15 @@
   "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development",
+    "server": "node server.js"
   },
   "dependencies": {
     "express": "^4.16.3",
-    "sqlite3": "^4.0.0"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "sqlite3": "^5.0.0"
   },
   "engines": {
     "node": "8.x"
@@ -19,7 +23,28 @@
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
     "express"
-  ]
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.14.5",
+    "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^4.2.2",
+    "eslint": "^7.31.0",
+    "eslint-plugin-vue": "^7.14.0",
+    "file-loader": "^6.1.0",
+    "html-webpack-plugin": "^4.4.1",
+    "mini-css-extract-plugin": "^0.11.0",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.26.10",
+    "sass-loader": "^10.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
 }
