@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 
+const APP_URL = (() => {
+    if (process.env.NODE_ENV === "development") {
+        return "localhost:8080";
+    } else {
+        return "production site";
+    }
+})();
+
 // go get a short url
 const submit = (event, entry, setEntry) => {
     event.preventDefault();
@@ -24,7 +32,7 @@ const submit = (event, entry, setEntry) => {
         .then((response) => response.json())
         .then((data) => {
             if (data.status === 1) {
-                setEntry("localhost:8080/api/" + data.link);
+                setEntry(APP_URL + "/api/" + data.link);
             } else {
                 setEntry("Error handling the request.");
             }
@@ -41,7 +49,7 @@ const Main = () => {
         <main className="grid-container">
             <div className="row hero-row">
                 <h2 className="center">
-                    Shorten a Link in a single click
+                    Shorten a link in a single click
                 </h2>
                 <h3 className="center">
                     And quite possibly get back something shorter.
