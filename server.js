@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
 const { toBase62, toBase10 } = require("./lib/base.js");
-const { database } = require("./lib/database.js");
+const {
+    databaseLinkInsert,
+    databaseLinkRetrieve
+} = require("./lib/database.js");
 
 const WEBPACK_PROXY_PORT = 3000;
 
@@ -13,42 +16,29 @@ const listener = app.listen(WEBPACK_PROXY_PORT, function () {
 
 // requesting an encoded url
 app.post("/api/encode", function (request, response) {
-    database.run(
-        "INSERT INTO links VALUES ($link)",
-        {
-            $link: request.body.entry
-        },
-        function (err) {
-            if (err) {
-                response.send(JSON.stringify({
-                    status: 0,
-                    link: null
-                }));
-            } else {
-                const lastID = this.lastID;
-                // return encoded
-                response.send(JSON.stringify({
-                    status: 1,
-                    link: toBase62(lastID)
-                }));
-            }
-        }
-    );
+    databaseLinkInsert(request.body.entry)
+        .then((id) => {
+            // return encoded
+            response.send(JSON.stringify({
+                status: 1,
+                link: toBase62(id)
+            }));
+        })
+        .catch(() => {
+            response.send(JSON.stringify({
+                status: 0,
+                link: null
+            }));
+        });
 });
 
 // user navigates to encoded url
 app.get("/api/:encoded", (request, response) => {
-    database.get(
-        "SELECT url FROM links WHERE (rowID = $rowID)",
-        {
-            $rowID: toBase10(request.params.encoded)
-        },
-        function (err, row) {
-            if (err) {
-                response.redirect("/");
-            } else {
-                response.redirect(row ? `https://${row.url}` : "/");
-            }
-        }
-    );
+    databaseLinkRetrieve(toBase10(request.params.encoded))
+        .then((url) => {
+            response.redirect(url ? `https://${url}` : "/");
+        })
+        .catch((err) => {
+            response.redirect("/");
+        });
 });
