@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Type from "@/components/Type.js";
 
 const APP_URL = (() => {
     if (process.env.NODE_ENV === "development") {
@@ -47,13 +48,13 @@ const Main = () => {
 
     return (
         <main className="grid-container">
-            <div className="row hero-row">
-                <h2 className="center">
+            <div className="row hero-row center">
+                <Type element="h2">
                     Shorten a link in a single click
-                </h2>
-                <h3 className="center">
+                </Type>
+                <Type element="h3">
                     And quite possibly get back something shorter.
-                </h3>
+                </Type>
             </div>
             <div className="row hero-row center">
                 <form
@@ -68,7 +69,7 @@ const Main = () => {
                     <div className="col-4 offset-4">
                         <input
                             type="submit"
-                            value="Make it happen." />
+                            value="Make it happen" />
                     </div>
                 </form>
             </div>

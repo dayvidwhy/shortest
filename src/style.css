@@ -92,6 +92,10 @@ a {
   color: #2ecc71;
 }
 
+.space {
+  margin: 10 0 10 0;
+}
+
 /*forms*/
 input[type=text] {
   width: 80%;
