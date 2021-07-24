@@ -1,18 +1,18 @@
 // init project
-var express = require("express");
-var app = express();
-app.use(express.json());
+const express = require("express");
+const app = express();
+const sqlite3 = require("sqlite3").verbose();
 
 const WEBPACK_PROXY_PORT = 3000;
 
-// listen for requests
+// setup express
+app.use(express.json());
 const listener = app.listen(WEBPACK_PROXY_PORT, function () {
     console.log("Your app is listening on port " + listener.address().port);
 });
 
 // start database
-var sqlite3 = require("sqlite3").verbose();
-var db = new sqlite3.Database(":memory:", (err, info) => {
+const database = new sqlite3.Database(":memory:", (err, info) => {
     if (err) {
         console.log("Failed to start database.");
         process.exit(1);
@@ -20,7 +20,7 @@ var db = new sqlite3.Database(":memory:", (err, info) => {
 });
 
 // setup database
-db.run("CREATE TABLE IF NOT EXISTS links (url TEXT)", (err, info) => {
+database.run("CREATE TABLE IF NOT EXISTS links (url TEXT)", (err, info) => {
     if (err) {
         // failed to open database
         console.log("Failed to create table in database.");
@@ -43,8 +43,6 @@ const toBase62 = (num) => {
         q = Math.floor(q / 62);
         result = base[r] + result;
     }
-
-    // final result
     return result;
 }
 
@@ -62,8 +60,7 @@ const toBase10 = (num) => {
 
 // requesting an encoded url
 app.post("/api/encode", function (request, response) {
-    // add link to the database
-    db.run(
+    database.run(
         "INSERT INTO links VALUES ($link)",
         {
             $link: request.body.entry
@@ -88,16 +85,17 @@ app.post("/api/encode", function (request, response) {
 
 // user navigates to encoded url
 app.get("/api/:encoded", (request, response) => {
-    // get from database
-    const rowID = toBase10(request.params.encoded);
-    db.get(
+    database.get(
         "SELECT url FROM links WHERE (rowID = $rowID)",
         {
-            $rowID: rowID
+            $rowID: toBase10(request.params.encoded)
         },
-        (err, row) => {
-            console.log("About to redirect");
-            response.redirect(row ? `https://${row.url}` : "/");
+        function (err, row) {
+            if (err) {
+                response.redirect("/");
+            } else {
+                response.redirect(row ? `https://${row.url}` : "/");
+            }
         }
     );
 });
