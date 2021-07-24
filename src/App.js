@@ -6,11 +6,11 @@ import Footer from "@/partials/Footer.js";
 
 const App = () => {
     return (
-        <div>
+        <>
             <Header />
             <Main />
             <Footer />
-        </div>
+        </>
     );
 };
 
