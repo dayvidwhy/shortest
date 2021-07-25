@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
     const config = {
         entry: {
             main: "./src/main.js",
@@ -96,7 +96,7 @@ module.exports = (env) => {
         },
     };
 
-    if (process.env.NODE_ENV === "production" && env !== undefined) {
+    if (argv.mode === "production" && env !== undefined && env.PROJECT_DOMAIN !== undefined) {
         config.plugins.push(new webpack.DefinePlugin({
             'process.env.PROJECT_DOMAIN': JSON.stringify(env.PROJECT_DOMAIN)
         }));
