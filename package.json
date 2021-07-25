@@ -4,8 +4,9 @@
   "description": "A simple Node app with SQLite as a database management system, instantly up and running.",
   "main": "server.js",
   "scripts": {
+    "start": "npm run build && NODE_ENV=production node server.js",
     "build": "webpack --mode production",
-    "start": "webpack-dev-server --mode development",
+    "dev": "webpack-dev-server --mode development",
     "server": "node server.js"
   },
   "dependencies": {
