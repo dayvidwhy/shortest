@@ -5,6 +5,7 @@ const {
     databaseLinkInsert,
     databaseLinkRetrieve
 } = require("./lib/database.js");
+const { validatedAddress } = require("./lib/validate.js");
 
 const WEBPACK_PROXY_PORT = 3000;
 
@@ -16,7 +17,15 @@ const listener = app.listen(WEBPACK_PROXY_PORT, function () {
 
 // requesting an encoded url
 app.post("/api/encode", function (request, response) {
-    databaseLinkInsert(request.body.entry)
+    const validUrl = validatedAddress(request.body.entry);
+    if (!validUrl) {
+        return response.send({
+            status: 0,
+            link: null
+        });
+    }
+
+    databaseLinkInsert(validUrl)
         .then((id) => {
             // return encoded
             response.send(JSON.stringify({
@@ -36,9 +45,15 @@ app.post("/api/encode", function (request, response) {
 app.get("/api/:encoded", (request, response) => {
     databaseLinkRetrieve(toBase10(request.params.encoded))
         .then((url) => {
-            response.redirect(url ? `https://${url}` : "/");
+            response.redirect(url ? url : "/");
         })
         .catch((err) => {
             response.redirect("/");
         });
 });
+
+// when serving the app in production, express will
+// also serve up the built project
+if (process.env.NODE_ENV === "production") {
+    app.use(express.static("dist"))
+}
