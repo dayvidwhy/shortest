@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Type from "@/components/Type.js";
+import { validatedAddress } from "@/utils/validate.js";
 
 const APP_URL = (() => {
     if (process.env.NODE_ENV === "development") {
         return "localhost:8080";
     } else {
-        return "production site";
+        return process.env.PROJECT_DOMAIN;
     }
 })();
 
@@ -14,7 +15,7 @@ const submit = (event, entry, setEntry) => {
     event.preventDefault();
 
     // can't be empty
-    if (entry === "" || entry === null) {
+    if (!validatedAddress(entry)) {
         setEntry("Enter a url first.");
         return;
     }
