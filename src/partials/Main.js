@@ -3,11 +3,8 @@ import Type from "@/components/Type.js";
 import { validatedAddress } from "@/utils/validate.js";
 
 const APP_URL = (() => {
-    if (process.env.NODE_ENV === "development") {
-        return "localhost:8080";
-    } else {
-        return process.env.PROJECT_DOMAIN ? `https://${process.env.PROJECT_DOMAIN}.glitch.me` : "localhost:3000";
-    }
+    const parsedDomain = new URL(window.location.href);
+    return parsedDomain.origin;
 })();
 
 // go get a short url
