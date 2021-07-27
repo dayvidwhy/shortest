@@ -7,11 +7,9 @@ const {
 } = require("./lib/database.js");
 const { validatedAddress } = require("./lib/validate.js");
 
-const WEBPACK_PROXY_PORT = 3000;
-
 // setup express
 app.use(express.json());
-const listener = app.listen(WEBPACK_PROXY_PORT, function () {
+const listener = app.listen(process.env.PORT || 3000, function () {
     console.log("Your app is listening on port " + listener.address().port);
 });
 
@@ -19,7 +17,7 @@ const listener = app.listen(WEBPACK_PROXY_PORT, function () {
 app.post("/api/encode", function (request, response) {
     const validUrl = validatedAddress(request.body.entry);
     if (!validUrl) {
-        return response.send({
+        return response.json({
             status: 0,
             link: null
         });
@@ -28,16 +26,16 @@ app.post("/api/encode", function (request, response) {
     databaseLinkInsert(validUrl)
         .then((id) => {
             // return encoded
-            response.send(JSON.stringify({
+            response.json({
                 status: 1,
                 link: toBase62(id)
-            }));
+            });
         })
         .catch(() => {
-            response.send(JSON.stringify({
+            response.json({
                 status: 0,
                 link: null
-            }));
+            });
         });
 });
 
