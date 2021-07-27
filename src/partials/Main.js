@@ -8,41 +8,35 @@ const APP_URL = (() => {
 })();
 
 // go get a short url
-const submit = (event, entry, setEntry) => {
-    event.preventDefault();
-
-    // can't be empty
-    if (!validatedAddress(entry)) {
-        setEntry("Enter a url first.");
-        return;
-    }
-
-    // make the request
-    setEntry("Working on it.");
-
+const submit = (entry) => {
     // encode the url
-    fetch("/api/encode", {
-        method: 'POST',
-        body: JSON.stringify({ entry }),
-        headers: {
-            "Content-Type": "application/json"
-        }
-    })
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.status === 1) {
-                setEntry(APP_URL + "/api/" + data.link);
-            } else {
-                setEntry("Error handling the request.");
+    return new Promise((res, rej) => {
+        fetch("/api/encode", {
+            method: 'POST',
+            body: JSON.stringify({ entry }),
+            headers: {
+                "Content-Type": "application/json"
             }
         })
-        .catch(() => {
-            setEntry("Error handling request.");
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.status === 1) {
+                    res(APP_URL + "/api/" + data.link);
+                } else {
+                    rej();
+                }
+            })
+            .catch(() => {
+                rej();
+            });
         });
 };
 
 const Main = () => {
     const [entry, setEntry] = useState("");
+    const [action, setAction] = useState("Make it happen");
+    const [placeholder, setPlaceholder] = useState("Link to shorten");
+    const actionText = React.useRef();
 
     return (
         <main className="grid-container">
@@ -56,18 +50,49 @@ const Main = () => {
             </div>
             <div className="row hero-row center">
                 <form
-                    onSubmit={e => submit(e, entry, setEntry)}>
+                    onSubmit={event => {
+                        event.preventDefault();
+
+                        if (action === "Copy") {
+                            actionText.current.select();
+                            document.execCommand("copy");
+                            return;
+                        }
+
+                        // can't be empty
+                        if (!validatedAddress(entry)) {
+                            setPlaceholder("Enter a url first.");
+                            return;
+                        }
+
+                        // send the url off for shortening
+                        const longUrl = entry;
+                        setEntry("");
+                        setPlaceholder("Working on it.");
+                        submit(longUrl)
+                            .then((shortUrl) => {
+                                setEntry(shortUrl);
+                                setAction("Copy");
+                            })
+                            .catch((e) => {
+                                setPlaceholder("Issue shortening the link.");
+                            });
+                    }}>
                     <input
                         value={entry}
-                        onChange={e => setEntry(e.target.value)}
+                        onChange={e => {
+                            setAction("Make it happen");
+                            setEntry(e.target.value);
+                        }}
                         type="text"
                         name="searching"
+                        ref={actionText}
                         maxLength="124"
-                        placeholder="Link to shorten" />
+                        placeholder={placeholder} />
                     <div className="col-4 offset-4">
                         <input
                             type="submit"
-                            value="Make it happen" />
+                            value={action} />
                     </div>
                 </form>
             </div>
