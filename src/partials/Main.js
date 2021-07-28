@@ -18,13 +18,14 @@ const submit = (entry) => {
                 "Content-Type": "application/json"
             }
         })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.status === 1) {
-                    res(APP_URL + "/api/" + data.link);
-                } else {
-                    rej();
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error();
                 }
+                return response.json();
+            })
+            .then((data) => {
+                res(APP_URL + "/api/" + data.link);
             })
             .catch(() => {
                 rej();
@@ -74,7 +75,7 @@ const Main = () => {
                                 setEntry(shortUrl);
                                 setAction("Copy");
                             })
-                            .catch((e) => {
+                            .catch(() => {
                                 setPlaceholder("Issue shortening the link.");
                             });
                     }}>

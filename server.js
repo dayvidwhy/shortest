@@ -15,27 +15,28 @@ const listener = app.listen(process.env.PORT || 3000, function () {
 
 // requesting an encoded url
 app.post("/api/encode", function (request, response) {
+    // throw 403 if no entry is received
+    if (request.body.entry === undefined) {
+        return response.status(403).end();
+    }
+
     const validUrl = validatedAddress(request.body.entry);
+
+    // if inputs are invalid throw 422
     if (!validUrl) {
-        return response.json({
-            status: 0,
-            link: null
-        });
+        return response.status(422).end();
     }
 
     databaseLinkInsert(validUrl)
         .then((id) => {
             // return encoded
             response.json({
-                status: 1,
                 link: toBase62(id)
             });
         })
         .catch(() => {
-            response.json({
-                status: 0,
-                link: null
-            });
+            // if our code fails throw 500
+            return response.status(500).end();
         });
 });
 
