@@ -7,6 +7,9 @@ const {
 } = require("./lib/database.js");
 const { validatedAddress } = require("./lib/validate.js");
 
+// app is served off this path
+const BASE_URL = "/";
+
 // setup express
 app.use(express.json());
 const listener = app.listen(process.env.PORT || 3000, function () {
@@ -44,10 +47,10 @@ app.post("/api/encode", function (request, response) {
 app.get("/api/:encoded", (request, response) => {
     databaseLinkRetrieve(toBase10(request.params.encoded))
         .then((url) => {
-            response.redirect(url ? url : "/");
+            response.redirect(url ? url : BASE_URL);
         })
         .catch((err) => {
-            response.redirect("/");
+            response.redirect(BASE_URL);
         });
 });
 
@@ -55,4 +58,9 @@ app.get("/api/:encoded", (request, response) => {
 // also serve up the built project
 if (process.env.NODE_ENV === "production") {
     app.use(express.static("dist"))
+
+    // all other routes send to base app
+    app.get("*", (request, response, next) => {
+        response.redirect(BASE_URL);
+    });
 }
