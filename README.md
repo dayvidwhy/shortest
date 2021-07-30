@@ -6,6 +6,8 @@ Another URL shortener, using node and sqlite3.
 2. `cd shortest`
 3. `npm install`
 4. `npm run start` - Loads production style.
+
+
 OR for webpack in dev mode
 4. `npm run dev`
 5. `npm run server` - in another terminal
