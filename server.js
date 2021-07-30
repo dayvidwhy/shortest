@@ -23,14 +23,14 @@ app.post("/api/encode", function (request, response) {
         return response.status(403).end();
     }
 
-    const validUrl = validatedAddress(request.body.entry);
+    const longUrl = request.body.entry;
 
     // if inputs are invalid throw 422
-    if (!validUrl) {
+    if (!validatedAddress(longUrl)) {
         return response.status(422).end();
     }
 
-    databaseLinkInsert(validUrl)
+    databaseLinkInsert(longUrl)
         .then((id) => {
             // return encoded
             response.json({
