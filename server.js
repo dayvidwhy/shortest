@@ -49,7 +49,7 @@ app.get("/api/:encoded", (request, response) => {
         .then((url) => {
             response.redirect(url ? url : BASE_URL);
         })
-        .catch((err) => {
+        .catch(() => {
             response.redirect(BASE_URL);
         });
 });
@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("dist"))
 
     // all other routes send to base app
-    app.get("*", (request, response, next) => {
+    app.get("*", (request, response) => {
         response.redirect(BASE_URL);
     });
 }

@@ -30,7 +30,7 @@ const submit = (entry) => {
             .catch(() => {
                 rej();
             });
-        });
+    });
 };
 
 const Main = () => {

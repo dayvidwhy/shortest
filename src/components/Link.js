@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const Link = ({ destination, children }) => {
     return (
@@ -6,6 +7,11 @@ const Link = ({ destination, children }) => {
             {children}
         </a>
     );
+};
+
+Link.propTypes = {
+    destination: PropTypes.string,
+    children: PropTypes.element
 };
 
 export default Link;

@@ -14,5 +14,5 @@ export const validatedAddress = (rawUrl) => {
         return parsed.href;
     } catch (e) {
         return false;
-    };
+    }
 };
