@@ -5,8 +5,10 @@ Another URL shortener, using node and sqlite3.
 1. `git clone https://github.com/dayvidwhy/shortest.git`
 2. `cd shortest`
 3. `npm install`
-4. `npm run start`
-5. `npm run server` in another terminal.
+4. `npm run start` - Loads production style.
+OR for webpack in dev mode
+4. `npm run dev`
+5. `npm run server` - in another terminal
 
 ## How does it work?
 It accepts urls in the given input field and then outputs in that same input field your successfully shortened URL. 
