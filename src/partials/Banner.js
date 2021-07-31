@@ -1,23 +1,49 @@
 import React from "react";
-import Type from "@/components/Type.js";
-import Link from "@/components/Link.js";
 import styled from "@emotion/styled";
 
-const Header = styled.header`
+// our components
+import Type from "@/components/Type";
+import Link from "@/components/Link";
+import { GridFluid } from "@/layout/Grid";
+import Row from "@/layout/Row";
+import Alignment from "@/layout/Alignment";
+
+const Spacer = styled.div`
+    margin: 10 0 10 0;
+`;
+
+const GridBanner = styled(GridFluid)`
     background-color: #4f79a2;
+`;
+
+const BannerType = styled(Type)`
+    width: 100%;
+    font-size: 1.1em;
+    color: #FFF;
+    margin: 10px 0;
+    &:hover {
+        color: #2ecc71;
+    }
 `;
 
 const Banner = () => {
     return (
-        <Header className="grid-fluid">
-            <div className="row center space">
-                <Link destination="http://davidyoung.tech">
-                    <Type className="banner-text banner-link" element="span">
-                        Made by davidyoung.tech
-                    </Type>
-                </Link>
-            </div>
-        </Header>
+        <GridBanner>
+            <Row>
+                <Alignment
+                    alignment={"center"}>
+                    <Spacer>
+                        <Link
+                            destination="http://davidyoung.tech">
+                            <BannerType
+                                element="span">
+                                Made by davidyoung.tech
+                            </BannerType>
+                        </Link>
+                    </Spacer>
+                </Alignment>
+            </Row>
+        </GridBanner>
     );
 };
 
