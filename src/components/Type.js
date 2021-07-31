@@ -1,26 +1,51 @@
 import React from "react";
+import styled from "@emotion/styled";
+
+const HeaderSecond = styled.h2`
+    font-size: 3rem;
+    font-weight: 300;
+    color: #ecf0f1;
+    margin: 50px 0 10px 0;
+    letter-spacing: 1px;
+    @media (max-width: 550px) {
+        font-size: 1.7rem;
+    }
+`;
+
+const HeaderThird = styled.h3`
+    font-size: 1.4rem;
+    font-weight: 200;
+    margin: 10px 0;
+    color: #ecf0f1;
+    letter-spacing: 1px;
+`;
+
+const Paragraph = styled.p`
+    font-size: 1.1em;
+    line-height: 130%;
+`;
 
 const Type = ({ element, children, className }) => {
     switch (element) {
     case "h2": {
         return (
-            <h2 className={className}>
+            <HeaderSecond className={className}>
                 {children}
-            </h2>
+            </HeaderSecond>
         );
     }
     case "h3": {
         return (
-            <h3 className={className}>
+            <HeaderThird className={className}>
                 {children}
-            </h3>
+            </HeaderThird>
         );
     }
     case "p": {
         return (
-            <p className={className}>
+            <Paragraph className={className}>
                 {children}
-            </p>
+            </Paragraph>
         );
     }
     case "span": {
