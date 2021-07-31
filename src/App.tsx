@@ -5,7 +5,7 @@ import Banner from "@/partials/Banner";
 import Main from "@/partials/Main";
 import Footer from "@/partials/Footer";
 
-const App = () => {
+const App = (): JSX.Element => {
     return (
         <>
             <Global

@@ -1,5 +1,6 @@
 module.exports = {
     "root": true,
+    "parser": "@typescript-eslint/parser",
     "env": {
         "browser": true,
         "es2021": true,
@@ -8,7 +9,8 @@ module.exports = {
     },
     "extends": [
         "eslint:recommended",
-        "plugin:react/recommended"
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 12,
@@ -16,10 +18,12 @@ module.exports = {
     },
     "ignorePatterns": ["**/dist/*"],
     "rules": {
-        "indent": ["error", 4]
+        "indent": ["error", 4],
+        "@typescript-eslint/no-var-requires": 0
     },
     "plugins": [
-        "jest"
+        "jest",
+        "@typescript-eslint"
     ],
     "settings": {
         "react": {

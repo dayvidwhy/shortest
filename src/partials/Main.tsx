@@ -79,9 +79,9 @@ const SubmitButton = styled.input`
 
 const MainContainer = GridContainer.withComponent("main");
 
-const Main = () => {
+const Main = (): JSX.Element => {
     const [entry, setEntry] = useState("");
-     const [action, setAction] = useState("Make it happen");
+    const [action, setAction] = useState("Make it happen");
     const [placeholder, setPlaceholder] = useState("Link to shorten");
     const actionText = React.useRef<HTMLInputElement>(null);
 

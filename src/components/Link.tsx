@@ -9,9 +9,9 @@ const Anchor = styled.a`
 interface LinkProps {
     destination: string;
     children: React.ReactNode;
-};
+}
 
-const Link = ({ destination, children }: LinkProps) => {
+const Link = ({ destination, children }: LinkProps): JSX.Element => {
     return (
         <Anchor href={destination}>
             {children}

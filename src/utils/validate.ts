@@ -8,7 +8,7 @@
 
     A monorepo with shared packages would solve this.
 */
-export const validatedAddress = (rawUrl: string) => {
+export const validatedAddress = (rawUrl: string): boolean | string => {
     try {
         const parsed = new URL(rawUrl);
         return parsed.href;

@@ -29,7 +29,7 @@ interface TypeProps {
     element: string;
     children: React.ReactNode;
     className?: string;
-};
+}
 
 const Type = ({ element, children, className }: TypeProps): JSX.Element => {
     switch (element) {
