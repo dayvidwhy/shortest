@@ -15,7 +15,7 @@ const CopyrightType = styled(Type)`
 
 const FooterContainer = GridContainer.withComponent("footer");
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
     return (
         <FooterContainer>
             <Row>

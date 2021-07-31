@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
 
-const Column = styled.div(props => {
+type ColumnProps = {
+    cols: number;
+    offset: number;
+};
+
+const Column = styled.div<ColumnProps>((props) => {
     return ({
         width: `${(props.cols / 12) * 100}%`,
         marginLeft: `${(props.offset / 12) * 100}%`,

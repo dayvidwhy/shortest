@@ -25,7 +25,13 @@ const Paragraph = styled.p`
     line-height: 130%;
 `;
 
-const Type = ({ element, children, className }) => {
+interface TypeProps {
+    element: string;
+    children: React.ReactNode;
+    className?: string;
+}
+
+const Type = ({ element, children, className }: TypeProps): JSX.Element => {
     switch (element) {
     case "h2": {
         return (
@@ -56,6 +62,7 @@ const Type = ({ element, children, className }) => {
         )
     }
     }
+    return <span></span>;
 };
 
 export default Type;

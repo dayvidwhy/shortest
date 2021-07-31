@@ -1,11 +1,11 @@
 import React from "react";
 import { Global, css } from '@emotion/react'
 
-import Banner from "@/partials/Banner.js";
-import Main from "@/partials/Main.js";
-import Footer from "@/partials/Footer.js";
+import Banner from "@/partials/Banner";
+import Main from "@/partials/Main";
+import Footer from "@/partials/Footer";
 
-const App = () => {
+const App = (): JSX.Element => {
     return (
         <>
             <Global

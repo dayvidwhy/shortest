@@ -9,8 +9,8 @@
     "build": "webpack --mode production",
     "dev": "webpack-dev-server --mode development",
     "server": "node ./lib/server.js",
-    "lint": "npx eslint . --ext .js",
-    "lint:fix": "npx eslint . --ext .js --fix"
+    "lint": "npx eslint . --ext .js,.ts,.tsx",
+    "lint:fix": "npx eslint . --ext .js,.ts,.tsx --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.4.0",
@@ -25,6 +25,10 @@
     "@babel/core": "^7.11.6",
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-react": "^7.14.5",
+    "@types/react": "^17.0.15",
+    "@types/react-dom": "^17.0.9",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "@typescript-eslint/parser": "^4.28.5",
     "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -41,6 +45,8 @@
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
+    "ts-loader": "^8.3.0",
+    "typescript": "^4.3.5",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
