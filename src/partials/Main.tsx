@@ -15,7 +15,7 @@ const APP_URL = (() => {
 })();
 
 // go get a short url
-const submit = (entry) => {
+const submit = (entry: string): Promise<string> => {
     // encode the url
     return new Promise((res, rej) => {
         fetch("/api/encode", {
@@ -81,9 +81,9 @@ const MainContainer = GridContainer.withComponent("main");
 
 const Main = () => {
     const [entry, setEntry] = useState("");
-    const [action, setAction] = useState("Make it happen");
+     const [action, setAction] = useState("Make it happen");
     const [placeholder, setPlaceholder] = useState("Link to shorten");
-    const actionText = React.useRef();
+    const actionText = React.useRef<HTMLInputElement>(null);
 
     return (
         <MainContainer>
@@ -105,7 +105,7 @@ const Main = () => {
                         onSubmit={event => {
                             event.preventDefault();
 
-                            if (action === "Copy") {
+                            if (action === "Copy" && actionText && actionText.current) {
                                 actionText.current.select();
                                 document.execCommand("copy");
                                 return;
@@ -139,7 +139,7 @@ const Main = () => {
                             type="text"
                             name="searching"
                             ref={actionText}
-                            maxLength="124"
+                            maxLength={124}
                             placeholder={placeholder} />
                         <Column offset={4} cols={4}>
                             <SubmitButton

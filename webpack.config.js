@@ -6,7 +6,7 @@ const path = require("path");
 
 module.exports = {
     entry: {
-        main: "./src/main.js",
+        main: "./src/main.tsx",
     },
     output: {
         filename: "[name].[contenthash:8].js",
@@ -21,6 +21,17 @@ module.exports = {
                 use: {
                     loader: "babel-loader",
                 },
+            },
+            {
+                test: /\.(ts|tsx)$/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                    },
+                    {
+                        loader: "ts-loader",
+                    }
+                ]
             },
             {
                 test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
@@ -70,7 +81,7 @@ module.exports = {
         alias: {
             "@": path.resolve(__dirname, 'src')
         },
-        extensions: ["*", ".js", ".json"],
+        extensions: ["*", ".ts", ".tsx", ".js", ".json"],
     },
     optimization: {
         moduleIds: "hashed",

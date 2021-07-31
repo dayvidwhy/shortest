@@ -6,7 +6,12 @@ const Anchor = styled.a`
     text-decoration: none;
 `;
 
-const Link = ({ destination, children }) => {
+interface LinkProps {
+    destination: string;
+    children: React.ReactNode;
+};
+
+const Link = ({ destination, children }: LinkProps) => {
     return (
         <Anchor href={destination}>
             {children}

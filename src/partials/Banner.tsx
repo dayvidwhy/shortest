@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import styled from "@emotion/styled";
 
 // our components
@@ -26,7 +26,7 @@ const BannerType = styled(Type)`
     }
 `;
 
-const Banner = () => {
+const Banner: FC = () => {
     return (
         <GridBanner>
             <Row>
