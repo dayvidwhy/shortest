@@ -1,11 +1,16 @@
 import React from "react";
+import styled from "@emotion/styled";
 import PropTypes from "prop-types";
+
+const Anchor = styled.a`
+    text-decoration: none;
+`;
 
 const Link = ({ destination, children }) => {
     return (
-        <a href={destination}>
+        <Anchor href={destination}>
             {children}
-        </a>
+        </Anchor>
     );
 };
 
