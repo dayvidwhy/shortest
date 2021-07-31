@@ -77,6 +77,8 @@ const SubmitButton = styled.input`
     }
 `;
 
+const MainContainer = GridContainer.withComponent("main");
+
 const Main = () => {
     const [entry, setEntry] = useState("");
     const [action, setAction] = useState("Make it happen");
@@ -84,7 +86,7 @@ const Main = () => {
     const actionText = React.useRef();
 
     return (
-        <GridContainer>
+        <MainContainer>
             <HeroRow>
                 <Alignment
                     alignment={"center"}>
@@ -147,7 +149,7 @@ const Main = () => {
                     </form>
                 </Alignment>
             </HeroRow>
-        </GridContainer>
+        </MainContainer>
     );
 };
 

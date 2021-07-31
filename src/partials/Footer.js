@@ -13,9 +13,11 @@ const CopyrightType = styled(Type)`
     font-size: 12px;
 `;
 
+const FooterContainer = GridContainer.withComponent("footer");
+
 const Footer = () => {
     return (
-        <GridContainer>
+        <FooterContainer>
             <Row>
                 <Alignment
                     alignment={"center"}>
@@ -32,7 +34,7 @@ const Footer = () => {
                     </Link>
                 </Alignment>
             </Row>
-        </GridContainer>
+        </FooterContainer>
     );
 };
 

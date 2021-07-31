@@ -14,7 +14,7 @@ const Spacer = styled.div`
 
 const GridBanner = styled(GridFluid)`
     background-color: #4f79a2;
-`;
+`.withComponent("header");
 
 const BannerType = styled(Type)`
     width: 100%;
