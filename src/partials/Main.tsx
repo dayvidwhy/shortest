@@ -9,7 +9,7 @@ import Row from "@/layout/Row";
 import Alignment from "@/layout/Alignment";
 import Column from "@/layout/Column";
 
-const APP_URL = (() => {
+const APP_URL = ((): string => {
     const parsedDomain = new URL(window.location.href);
     return parsedDomain.origin;
 })();
@@ -80,9 +80,9 @@ const SubmitButton = styled.input`
 const MainContainer = GridContainer.withComponent("main");
 
 const Main = (): JSX.Element => {
-    const [entry, setEntry] = useState("");
-    const [action, setAction] = useState("Make it happen");
-    const [placeholder, setPlaceholder] = useState("Link to shorten");
+    const [entry, setEntry] = useState<string>("");
+    const [action, setAction] = useState<string>("Make it happen");
+    const [placeholder, setPlaceholder] = useState<string>("Link to shorten");
     const actionText = React.useRef<HTMLInputElement>(null);
 
     return (
