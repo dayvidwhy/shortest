@@ -114,6 +114,7 @@ const Main = (): JSX.Element => {
                             // can't be empty
                             if (!validatedAddress(entry)) {
                                 setPlaceholder("Enter a url first.");
+                                setEntry("");
                                 return;
                             }
 
