@@ -22,6 +22,13 @@ npm run dev
 npm run server # in another terminal
 ```
 
+## Deployment
+The application can be deployed to [glitch](https://glitch.com) and should work right away since the `npm run start` command starts the application and server.
+
+You can also [remix my copy in glitch](https://glitch.com/edit/#!/remix/shortest) if you would like to further experiment with this on your own, it should work regardless of what subdomain the applicaiton is served from.
+
+I chose to host this application on glitch because it facilitates having a small back-end server alongside the front-end application but note that since the sqlite3 database is stored in memory there is currently no long term persistance of URL's.
+
 ## How it works
 The application accepts URL's in the given input field and then outputs a short URL that redirects to that same place, in the input field. You are then able to copy this and start using it as a shorter version of the URL.
 
