@@ -1,25 +1,33 @@
 # Shortest
-Another URL shortener, using node and sqlite3.
+URL Shortener built using React in Typescript, that runs a back-end system with node and sqlite3 for storage.
 
 ## Installation
-1. `git clone https://github.com/dayvidwhy/shortest.git`
-2. `cd shortest`
-3. `npm install`
-4. `npm run start` - Loads production style.
+```bash
+git clone https://github.com/dayvidwhy/shortest.git
+cd shortest
+npm install
+```
 
+## Running the application
+There are two ways to run the application currently.
 
-OR for webpack in dev mode
+You can start the application like you would if you were serving it in development.
+```bash
+npm run start
+```
 
+Or you can run webpack in development mode and also start the back-end server. When running webpack in development mode the server is reached using a proxy and traffic to `/api` is redirected to the local back-end server using `webpack-dev-server`'s proxy feature.
+```bash
+npm run dev
+npm run server # in another terminal
+```
 
-4. `npm run dev`
-5. `npm run server` - in another terminal
+## How it works
+The application accepts URL's in the given input field and then outputs a short URL that redirects to that same place, in the input field. You are then able to copy this and start using it as a shorter version of the URL.
 
-## How does it work?
-It accepts urls in the given input field and then outputs in that same input field your successfully shortened URL. 
+In the back-end the application takes an input string and inserts it into a database that keeps track of URL's and associated ID's. The ID of the database row is then converted to base62 to keep the URL short as usage of the application increases.
 
-The app takes an input string and inserts it into a database that keeps track of url's and associated ID's. ID's are converted to base 62 to produce the extended link.  
-
-The database is pretty simple with just one table called `links` that looks like:
+The database has one table called `links` that looks like:
 
 | rowID | url             |
 | ------|-----------------|
@@ -27,16 +35,14 @@ The database is pretty simple with just one table called `links` that looks like
 | 2     | url2            |
 | 3     | url3            |
 
-Where we track url's with rowID's.
+Where we track URL's with rowID's.
 
-If we request a url to be shortened we store it in the database and return the rowID of the entry encoded as base 62.
-
-So if we navigate to `http://localhost:8080/api/462a` a few things will happen:
+For example if are running the application in development mode using webpack and we navigate to `http://localhost:8080/api/462a` a few things will happen:
 
 * `462a` will be converted back to a base 10 number, a rowID.
 * The rowID is looked up in the database.
-* The server issues a redirect to the associated url.
+* The express server issues a redirect to the associated url.
 
 ## To-do
 * Better validation.
-* Rate limiting to prevent abuse.
+* Rate limiting.
