@@ -1,19 +1,20 @@
-const express = require("express");
-const app = express();
-const { toBase62, toBase10 } = require("./base.js");
-const {
+import express from "express";
+import { toBase62, toBase10 } from "./base";
+import {
     databaseLinkInsert,
     databaseLinkRetrieve
-} = require("./database.js");
-const { validatedAddress } = require("./validate.js");
+} from "./database";
+import { validatedAddress } from "./validate";
+
+const app = express();
 
 // app is served off this path
 const BASE_URL = "/";
 
 // setup express
 app.use(express.json());
-const listener = app.listen(process.env.PORT || 3000, function () {
-    console.log("Your app is listening on port " + listener.address().port);
+app.listen(process.env.PORT || 3000, function () {
+    console.log("Your app is listening on port " + process.env.PORT);
 });
 
 // requesting an encoded url
@@ -34,7 +35,7 @@ app.post("/api/encode", function (request, response) {
         .then((id) => {
             // return encoded
             response.json({
-                link: toBase62(id)
+                link: toBase62(id + "")
             });
         })
         .catch(() => {

@@ -1,4 +1,6 @@
-const sqlite3 = require("sqlite3").verbose();
+import sqlite from "sqlite3";
+
+const sqlite3 = sqlite.verbose();
 
 // start database
 const database = new sqlite3.Database(":memory:", (err) => {
@@ -8,7 +10,7 @@ const database = new sqlite3.Database(":memory:", (err) => {
     }
 });
 
-const createTable = (table) => {
+const createTable = (table: string): Promise<void> => {
     return new Promise((res, rej) => {
         // setup database
         return database.run(`CREATE TABLE IF NOT EXISTS ${table} (url TEXT)`, (err) => {
@@ -22,7 +24,7 @@ const createTable = (table) => {
 };
 
 // store the url in the database
-module.exports.databaseLinkInsert = (link) => {
+export const databaseLinkInsert = (link: string): Promise<number> => {
     return new Promise((res, rej) => {
         return createTable("links")
             .then(() => {
@@ -47,7 +49,7 @@ module.exports.databaseLinkInsert = (link) => {
 };
 
 // fetch the url from the database
-module.exports.databaseLinkRetrieve = (id) => {
+export const databaseLinkRetrieve = (id: number): Promise<string> => {
     return new Promise((res, rej) => {
         return createTable("links")
             .then(() => {
