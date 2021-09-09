@@ -1,7 +1,7 @@
-const {
+import {
     databaseLinkInsert,
     databaseLinkRetrieve
-} = require("./database.ts");
+} from "./database";
 
 test("Should be able to insert a value into the database", () => {
     expect.assertions(2);

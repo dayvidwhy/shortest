@@ -1,12 +1,12 @@
-const { toBase62, toBase10 } = require("./base.ts");
+import { toBase62, toBase10 } from "./base";
 
 test("Should convert 5 to the same value in base 62", () => {
-    const result = toBase62(5);
+    const result = toBase62("5");
     expect(result).toBe("5");
 });
 
 test("Should convert 10 to a single character in base 62", () => {
-    const result = toBase62(10);
+    const result = toBase62("10");
     expect(result).toBe("a");
 });
 
