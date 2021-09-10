@@ -74,8 +74,22 @@ module.exports = (env, argv) => {
                 chunkFilename: "[name].[contenthash:8].css",
             }),
             new htmlWebpackPlugin({
-                template: path.resolve(__dirname, "public", "index.html"),
-                favicon: "./public/favicon.ico",
+                "meta": {
+                    "charset": "utf-8",
+                    "viewport": "width=device-width, initial-scale=1",
+                    "description": "Convert your long url into a sub 10 character link.",
+                    "keywords": "url, shortener, link",
+                    "robots": "index,follow",
+                    "content": "Convert your long url into a sub 10 character link."
+                },
+                "title": "Url Shortener",
+                "templateContent": `
+                    <html>
+                        <body>
+                            <div id="app"></div>
+                        </body>
+                    </html>
+                `
             })
         ],
         resolve: {
