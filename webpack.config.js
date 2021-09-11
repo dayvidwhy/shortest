@@ -5,7 +5,7 @@ const autoprefixer = require("autoprefixer");
 const path = require("path");
 
 module.exports = (env, argv) => {
-    const prod = argv.mode !== "production";
+    const prod = argv.mode === "production";
     return {
         entry: {
             main: "./src/main.tsx",
