@@ -75,16 +75,17 @@ module.exports = (env, argv) => {
             }),
             new htmlWebpackPlugin({
                 "meta": {
-                    "charset": "utf-8",
+                    "charset": {"charset": "utf-8"},
+                    "http-equiv": {"http-equiv": "X-UA-Compatible", "content": "IE=edge"},
                     "viewport": "width=device-width, initial-scale=1",
                     "description": "Convert your long url into a sub 10 character link.",
                     "keywords": "url, shortener, link",
-                    "robots": "index,follow",
-                    "content": "Convert your long url into a sub 10 character link."
+                    "robots": "index,follow"
                 },
                 "title": "Url Shortener",
                 "templateContent": `
-                    <html>
+                    <!DOCTYPE html>
+                    <html lang="en">
                         <body>
                             <div id="app"></div>
                         </body>
