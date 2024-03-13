@@ -10,7 +10,7 @@ const Column = styled.div<ColumnProps>((props) => {
         width: `${(props.cols / 12) * 100}%`,
         marginLeft: `${(props.offset / 12) * 100}%`,
         float: "left",
-        '@media (max-width: 550px)': {
+        "@media (max-width: 550px)": {
             width: "100%",
             marginLeft: 0
         }

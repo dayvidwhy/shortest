@@ -19,7 +19,7 @@ const submit = (entry: string): Promise<string> => {
     // encode the url
     return new Promise((res, rej) => {
         fetch("/api/encode", {
-            method: 'POST',
+            method: "POST",
             body: JSON.stringify({ entry }),
             headers: {
                 "Content-Type": "application/json"

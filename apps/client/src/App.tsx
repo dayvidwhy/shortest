@@ -1,5 +1,5 @@
 import React from "react";
-import { Global, css } from '@emotion/react'
+import { Global, css } from "@emotion/react"
 
 import Banner from "@/partials/Banner";
 import Main from "@/partials/Main";

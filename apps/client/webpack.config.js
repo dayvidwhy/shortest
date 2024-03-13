@@ -3,7 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const path = require("path");
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 
 
 module.exports = (env, argv) => {
@@ -97,7 +97,7 @@ module.exports = (env, argv) => {
         ],
         resolve: {
             alias: {
-                "@": path.resolve(__dirname, 'src')
+                "@": path.resolve(__dirname, "src")
             },
             extensions: ["*", ".ts", ".tsx", ".js", ".json"],
         },
