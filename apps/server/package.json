@@ -8,6 +8,8 @@
     "dev": "ts-node ./server.ts"
   },
   "dependencies": {
+    "@shortest/base": "^1.0.0",
+    "@shortest/database": "^1.0.0",
     "express": "^4.16.3",
     "sqlite3": "^5.0.0"
   },

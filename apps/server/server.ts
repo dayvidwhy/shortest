@@ -1,10 +1,11 @@
 import express from "express";
-import { toBase62, toBase10 } from "./base";
+import { toBase62, toBase10 } from "@shortest/base";
 import {
     databaseLinkInsert,
     databaseLinkRetrieve
-} from "./database";
-import { validatedAddress } from "./validate";
+} from "@shortest/database";
+
+import { validatedAddress } from "./utils/validate";
 
 const app = express();
 

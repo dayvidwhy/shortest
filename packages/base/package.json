@@ -1,0 +1,25 @@
+{
+    "name": "@shortest/base",
+    "version": "1.0.0",
+    "description": "Simple URL shortener with SQLite3 as a database management system.",
+    "main": "base.ts",
+    "scripts": {
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+      "@types/jest": "^27.0.1",
+      "typescript": "^4.3.5"
+    },
+    "repository": {
+      "url": "https://github.com/dayvidwhy/shortest"
+    },
+    "license": "MIT",
+    "keywords": [
+      "node",
+      "express",
+      "react"
+    ],
+    "private": true
+  }
+  
