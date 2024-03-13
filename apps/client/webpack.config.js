@@ -97,22 +97,20 @@ module.exports = (env, argv) => {
         ],
         resolve: {
             alias: {
-                "@": path.resolve(__dirname, "src")
+                "@": path.resolve(__dirname, "./src")
             },
-            extensions: ["*", ".ts", ".tsx", ".js", ".json"],
+            extensions: [".*", ".ts", ".tsx", ".js", ".json"],
         },
         optimization: {
+            minimize: prod,
             minimizer: [
                 new TerserPlugin({
-                    cache: true,
-                    parallel: true,
-                    sourceMap: true, // Must be set to true if using source-maps in production
                     terserOptions: {
                         // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
                     }
                 }),
             ],
-            moduleIds: "hashed",
+            moduleIds: "deterministic",
             runtimeChunk: "single",
             splitChunks: {
                 cacheGroups: {
@@ -127,9 +125,12 @@ module.exports = (env, argv) => {
         },
         devServer: {
             historyApiFallback: true,
-            proxy: {
-                "/api": "http://localhost:3000"
-            }
-        },
+            proxy: [
+                {
+                    context: ["/api"],
+                    target: "http://localhost:3000",
+                }
+            ],
+        }
     };
 };

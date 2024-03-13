@@ -6,7 +6,6 @@ const HeaderSecond = styled.h2`
     font-weight: 300;
     color: #ecf0f1;
     margin: 50px 0 10px 0;
-    letter-spacing: 1px;
     @media (max-width: 550px) {
         font-size: 1.7rem;
     }
@@ -17,7 +16,6 @@ const HeaderThird = styled.h3`
     font-weight: 200;
     margin: 10px 0;
     color: #ecf0f1;
-    letter-spacing: 1px;
 `;
 
 const Paragraph = styled.p`
