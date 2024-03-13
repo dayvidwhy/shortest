@@ -1,4 +1,4 @@
-import { toBase62, toBase10 } from "./base.ts";
+import { toBase62, toBase10 } from "./base";
 
 test("Should convert 5 to the same value in base 62", () => {
     const result = toBase62("5");

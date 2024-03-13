@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 
 // our components
 import Type from "@/components/Type";
-import { validatedAddress } from "@/utils/validate";
+import { validatedAddress } from "@shortest/validate";
 import { GridContainer } from "@/layout/Grid";
 import Row from "@/layout/Row";
 import Alignment from "@/layout/Alignment";

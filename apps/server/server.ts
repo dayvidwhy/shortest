@@ -5,7 +5,7 @@ import {
     databaseLinkRetrieve
 } from "@shortest/database";
 
-import { validatedAddress } from "./utils/validate";
+import { validatedAddress } from "@shortest/validate";
 
 const app = express();
 
