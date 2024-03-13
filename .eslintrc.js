@@ -19,7 +19,8 @@ module.exports = {
     "ignorePatterns": ["**/dist/*"],
     "rules": {
         "indent": ["error", 4],
-        "@typescript-eslint/no-var-requires": 0
+        "@typescript-eslint/no-var-requires": 0,
+        "quotes": ["error", "double"]
     },
     "plugins": [
         "jest",
