@@ -1,7 +1,7 @@
 import {
     databaseLinkInsert,
     databaseLinkRetrieve
-} from "./database";
+} from "./database.ts";
 
 test("Should be able to insert a value into the database", () => {
     expect.assertions(2);

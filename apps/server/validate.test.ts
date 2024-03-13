@@ -1,4 +1,4 @@
-import { validatedAddress } from "./validate";
+import { validatedAddress } from "./validate.ts";
 
 test("Should know a valid url", () => {
     const result = validatedAddress("https://google.com/");
