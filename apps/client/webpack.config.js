@@ -3,6 +3,8 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const autoprefixer = require("autoprefixer");
 const path = require("path");
+const TerserPlugin = require('terser-webpack-plugin');
+
 
 module.exports = (env, argv) => {
     const prod = argv.mode === "production";
@@ -100,6 +102,16 @@ module.exports = (env, argv) => {
             extensions: ["*", ".ts", ".tsx", ".js", ".json"],
         },
         optimization: {
+            minimizer: [
+                new TerserPlugin({
+                    cache: true,
+                    parallel: true,
+                    sourceMap: true, // Must be set to true if using source-maps in production
+                    terserOptions: {
+                        // https://github.com/webpack-contrib/terser-webpack-plugin#terseroptions
+                    }
+                }),
+            ],
             moduleIds: "hashed",
             runtimeChunk: "single",
             splitChunks: {

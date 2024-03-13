@@ -20,13 +20,13 @@
         "jsx": "react-jsx",
         "baseUrl": ".",
         "paths": {
-            "@/*": ["src/*"]
+            "@/*": ["apps/client/src/*"]
           }
     },
     "include": [
-        "./src/**/*"
+        "./apps/client/src/**/*"
     ],
     "exclude": [
-        "./dist/**/*"
+        "./apps/client/dist/**/*"
     ]
 }

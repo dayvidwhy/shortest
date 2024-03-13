@@ -58,7 +58,7 @@ export const databaseLinkRetrieve = (id: number): Promise<string> => {
                     {
                         $rowID: id
                     },
-                    function (err, row) {
+                    function (err, row: { url: string } | undefined) {
                         if (row) {
                             res(row.url);
                         } else {

@@ -8,13 +8,15 @@ import { validatedAddress } from "./validate";
 
 const app = express();
 
+const port = process.env.PORT || 3000;
+
 // app is served off this path
 const BASE_URL = "/";
 
 // setup express
 app.use(express.json());
-app.listen(process.env.PORT || 3000, function () {
-    console.log("Your app is listening on port " + process.env.PORT);
+app.listen(port, function () {
+    console.log("Your app is listening on port " + port);
 });
 
 // requesting an encoded url
@@ -58,7 +60,7 @@ app.get("/api/:encoded", (request, response) => {
 // when serving the app in production, express will
 // also serve up the built project
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static("dist"))
+    app.use(express.static("../client/dist"))
 
     // all other routes send to base app
     app.get("*", (request, response) => {
