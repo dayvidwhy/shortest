@@ -11,7 +11,7 @@
     "@shortest/base": "^1.0.0",
     "@shortest/database": "^1.0.0",
     "@shortest/validate": "^1.0.0",
-    "express": "^4.16.3",
+    "express": "^4.20.0",
     "sqlite3": "^5.0.0"
   },
   "devDependencies": {
